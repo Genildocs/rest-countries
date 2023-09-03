@@ -2,21 +2,31 @@ import styled from "styled-components";
 import { useState } from "react";
 const Header = () => {
     const [displayMode, setdisplayMode] = useState(false);
-
+    const handleTheme = () => {
+        document.documentElement.classList.toggle("dark");
+        setdisplayMode(!displayMode);
+    };
+  
     return (
-        <Wrapper className="flex items-center justify-between bg-whiteText ">
+        <Wrapper className="flex items-center justify-between bg-whiteText dark:bg-DarkBlue">
             <div>
-                <h1 className="font-bold text-LightModeText">Where in the world?</h1>
+                <h1 className="text-lg font-bold text-LightModeText dark:text-whiteText ">
+                    Where in the world?
+                </h1>
             </div>
             <div className="flex">
-                <button onClick={() => setdisplayMode(true)} className="mr-2">
+                <button
+                    onClick={handleTheme}
+                    className={`${displayMode ? "hidden" : "block"} mr-2`}
+                    
+                >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
                         strokeWidth="1.5"
                         stroke="currentColor"
-                        className="w-6 h-6"
+                        className="w-6 h-6 "
                     >
                         <path
                             strokeLinecap="round"
@@ -25,14 +35,17 @@ const Header = () => {
                         />
                     </svg>
                 </button>
-                <button className="hidden mr-2">
+                <button
+                    onClick={handleTheme}
+                    className={`${displayMode ? "block" : "hidden"} mr-2`}
+                >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
                         strokeWidth="1.5"
                         stroke="currentColor"
-                        className="w-6 h-6"
+                        className="w-6 h-6 text-whiteText"
                     >
                         <path
                             strokeLinecap="round"
@@ -42,7 +55,7 @@ const Header = () => {
                     </svg>
                 </button>
                 <div>
-                    <p>Dark Mode</p>
+                    <p className="text-base font-semibold dark:text-whiteText">{displayMode ? 'Light Mode' : 'Dark Mode'}</p>
                 </div>
             </div>
         </Wrapper>
@@ -54,4 +67,5 @@ export default Header;
 export const Wrapper = styled.div`
   height: 10vh;
   padding: 0 1.5rem;
+  box-shadow: 0px 21px 112px -50px rgba(0, 0, 0, 1);
 `;
