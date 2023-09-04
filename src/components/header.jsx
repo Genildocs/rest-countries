@@ -67,5 +67,5 @@ export default Header;
 export const Wrapper = styled.div`
   height: 10vh;
   padding: 0 1.5rem;
-  box-shadow: 0px 21px 112px -50px rgba(0, 0, 0, 1);
+  box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.15);
 `;
