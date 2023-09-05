@@ -30,7 +30,7 @@ export default function CountriesCards() {
                     <Loader size="md" content="Loading..." />
                 ) : (
                     countries.map((countrie) => (
-                        <div  className={`${countrie.fifa} mb-6`}>
+                        <Region  className={`${countrie.fifa} mb-6`}>
                             <Img
                                 src={countrie.flags.png}
                                 alt={`flags ${countrie.name.common}`}
@@ -55,7 +55,7 @@ export default function CountriesCards() {
                                     {countrie.capital}
                                 </p>
                             </Country>
-                        </div>
+                        </Region>
                     ))
                 )}
             </Container>
@@ -65,6 +65,7 @@ export default function CountriesCards() {
 
 export const Container = styled.div`
   margin: 5rem 3rem 0 3rem;
+ 
 `;
 
 export const Img = styled.img`
@@ -78,4 +79,14 @@ export const Country = styled.div`
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.15);
+
+
 `;
+
+export const Region = styled.div`
+      &:hover{
+    border-radius: 10px;    
+    border: 2px solid red;
+    cursor: pointer;
+  }
+`
