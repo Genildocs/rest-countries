@@ -4,27 +4,15 @@ import { Loader } from "rsuite";
 import 'rsuite/dist/rsuite.min.css';
 import { styled } from "styled-components";
 import InputSearch from "./inputSearch";
+import { RegionContext } from "../providers/countrys";
+import { useContext } from "react";
 
 export default function CountriesCards() {
-    const [countries, setCoutries] = useState([]);
-
-    const getCountries = async () => {
-        try {
-            const response = await consultCountry('/all');
-            const data = response.data;
-            setCoutries(data);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    useEffect(() => {
-        getCountries();
-    }, []);
-
+    const {countries, setCoutries} = useContext(RegionContext)
+   
     return (
         <div>
-            <InputSearch countries={countries} setCoutries={setCoutries}/>
+            <InputSearch />
             <Container>
                 {countries.length === 0 ? (
                     <Loader size="md" content="Loading..." />
