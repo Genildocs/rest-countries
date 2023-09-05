@@ -1,12 +1,22 @@
 import { useState } from "react";
 import { styled } from "styled-components";
-const InputSearch = () => {
+const InputSearch = ({countries , setCoutries}) => {
     const [search , setSearch] = useState('')
+    
+    const searchCountry = () =>{
+      const country = [...countries];
+      const filter = country.filter((item)=>{
+           return item.name.common === search ? item.name.common : console.log('Isfalse');
+      })
+
+      setCoutries(filter)
+    }
 
     const handleClick = ()=>{
-      if(search === '') return
-      console.log(search)
-      setSearch('')
+      if(search === '') return    
+      setSearch('')   
+      searchCountry();
+      
     }
 
 

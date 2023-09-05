@@ -1,17 +1,16 @@
-import axios from "axios";
+import consultCountry from "../axios/axios";
 import React, { useEffect, useState } from "react";
 import { Loader } from "rsuite";
+import 'rsuite/dist/rsuite.min.css';
 import { styled } from "styled-components";
 import InputSearch from "./inputSearch";
+
 export default function CountriesCards() {
     const [countries, setCoutries] = useState([]);
 
     const getCountries = async () => {
         try {
-            const response = await axios.get(
-                "https://restcountries.com/v3.1/name/jamaica?fullText=true"
-            );
-
+            const response = await consultCountry('/all');
             const data = response.data;
             setCoutries(data);
         } catch (error) {
@@ -25,13 +24,13 @@ export default function CountriesCards() {
 
     return (
         <div>
-            <InputSearch />
+            <InputSearch countries={countries} setCoutries={setCoutries}/>
             <Container>
                 {countries.length === 0 ? (
-                    <Loader content="Loading..." />
+                    <Loader size="md" content="Loading..." />
                 ) : (
                     countries.map((countrie) => (
-                        <div>
+                        <div  className={`${countrie.fifa} mb-6`}>
                             <Img
                                 src={countrie.flags.png}
                                 alt={`flags ${countrie.name.common}`}
@@ -53,7 +52,7 @@ export default function CountriesCards() {
                                 </p>
                                 <p>
                                     <span className="font-semibold text-lg">Capital:</span>{" "}
-                                    {countrie.capital[0]}
+                                    {countrie.capital}
                                 </p>
                             </Country>
                         </div>
@@ -71,6 +70,7 @@ export const Container = styled.div`
 export const Img = styled.img`
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
+  width: 100%;
 `;
 
 export const Country = styled.div`

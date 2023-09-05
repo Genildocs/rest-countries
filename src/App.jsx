@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import Header from "./components/header";
-import CountriesCards from "./components/countriesCards";
+import { Outlet } from "react-router-dom";
 
 
 
 function App() {
   return (
-    <Container className="bg-VeryLightGray  dark:bg-VeryDarkBlue">
-      <Header />        
-      <CountriesCards />
+    <Container className="bg-VeryLightGray  dark:bg-VeryDarkBlue"> 
+      <Header />
+      <Outlet />                  
     </Container>
   );
 }
