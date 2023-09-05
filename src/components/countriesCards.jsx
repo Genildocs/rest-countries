@@ -1,4 +1,4 @@
-import consultCountry from "../axios/axios";
+import Drop from "../components/dropdown"
 import React, { useEffect, useState } from "react";
 import { Loader } from "rsuite";
 import 'rsuite/dist/rsuite.min.css';
@@ -13,6 +13,7 @@ export default function CountriesCards() {
     return (
         <div>
             <InputSearch />
+            <Drop />
             <Container>
                 {countries.length === 0 ? (
                     <Loader size="md" content="Loading..." />
@@ -53,7 +54,11 @@ export default function CountriesCards() {
 
 export const Container = styled.div`
   margin: 5rem 3rem 0 3rem;
- 
+ @media(min-width: 640px){
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 2rem;
+ }
 `;
 
 export const Img = styled.img`
