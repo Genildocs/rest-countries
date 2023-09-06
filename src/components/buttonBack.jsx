@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 const ButtonBack = () => {
     return (
         <Wrapper className="bg-whiteText dark:bg-DarkBlue">
-            <Link to={"/"} className="flex justify-center items-center py-3 ">
+            <Link to={"/"} className="flex justify-center items-center py-3 " style={{textDecoration:'none'}} >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -19,7 +19,7 @@ const ButtonBack = () => {
                         d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
                     />
                 </svg>
-
+                
                 <h5 className="ml-1 ">Back</h5>
             </Link>
         </Wrapper>
@@ -33,3 +33,4 @@ export const Wrapper = styled.div`
   margin: 3rem 2rem 0 2rem;
   box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.15);
 `;
+

@@ -6,10 +6,14 @@ import { styled } from "styled-components";
 import InputSearch from "./inputSearch";
 import { RegionContext } from "../providers/countrys";
 import { useContext } from "react";
-
+import { Link } from "react-router-dom";
 export default function CountriesCards() {
-    const {countries, setCoutries} = useContext(RegionContext)
-   
+    const {countries, setNation} = useContext(RegionContext)
+    
+    const handleLinkClick = (countrie) =>{
+        setNation(countrie)
+    };
+
     return (
         <div>
             <InputSearch />
@@ -19,17 +23,18 @@ export default function CountriesCards() {
                     <Loader size="md" content="Loading..." />
                 ) : (
                     countries.map((countrie) => (
-                        <Region  className={`${countrie.fifa} mb-6`}>
+                    <Link to={'/detail'}   style={{textDecoration:'none'}}  onClick={()=> handleLinkClick(countrie)} >  
+                      <Region  className={`${countrie.fifa} mb-6`}>
                             <Img
                                 src={countrie.flags.png}
                                 alt={`flags ${countrie.name.common}`}
                             />
-                            <Country className="bg-whiteText dark:bg-DarkBlue dark:text-white">
+                            <Country className="bg-whiteText text-LightModeText dark:bg-DarkBlue dark:text-white">
                                 <h1 className="font-bold text-2xl mb-3">
                                     {countrie.name.common}
                                 </h1>
                                 <p className="mb-2.5">
-                                    <span className="font-semibold text-lg">Population:</span>{" "}
+                                    <span className="font-semibold text-lg ">Population:</span>{" "}
                                     {Number(countrie.population).toLocaleString("en", {
                                         minimumFractionDigits: 2,
                                         maximumFractionDigits: 2,
@@ -45,6 +50,7 @@ export default function CountriesCards() {
                                 </p>
                             </Country>
                         </Region>
+                        </Link>
                     ))
                 )}
             </Container>
@@ -77,9 +83,5 @@ export const Country = styled.div`
 `;
 
 export const Region = styled.div`
-      &:hover{
-    border-radius: 10px;    
-    border: 2px solid red;
-    cursor: pointer;
-  }
+   
 `

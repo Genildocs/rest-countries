@@ -6,7 +6,7 @@ const Header = () => {
         document.documentElement.classList.toggle("dark");
         setdisplayMode(!displayMode);
     };
-  
+
     return (
         <Wrapper className="flex items-center justify-between bg-whiteText dark:bg-DarkBlue">
             <div>
@@ -18,7 +18,6 @@ const Header = () => {
                 <button
                     onClick={handleTheme}
                     className={`${displayMode ? "hidden" : "block"} mr-2`}
-                    
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +54,9 @@ const Header = () => {
                     </svg>
                 </button>
                 <div>
-                    <p className="text-base font-semibold dark:text-whiteText">{displayMode ? 'Light Mode' : 'Dark Mode'}</p>
+                    <p className="text-base font-semibold dark:text-whiteText">
+                        {displayMode ? "Light Mode" : "Dark Mode"}
+                    </p>
                 </div>
             </div>
         </Wrapper>
