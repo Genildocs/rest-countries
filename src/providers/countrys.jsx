@@ -4,10 +4,8 @@ import { createContext, useState, useEffect} from "react";
 export const RegionContext = createContext({});
 
 export const RegionProvider = ({children}) =>{
-    const [countries, setCoutries] = useState([]);
-    const [nation, setNation] = useState([])    
-    console.log(nation)
-     
+    const [countries, setCoutries] = useState([]);      
+   
     const getCountries = async () => {
         try {
             const response = await consultCountry('/all');
@@ -31,7 +29,7 @@ export const RegionProvider = ({children}) =>{
 
     return(
         
-        <RegionContext.Provider value={{countries, setCoutries, nation, setNation}}>
+        <RegionContext.Provider value={{countries, setCoutries}}>
             {children}
         </RegionContext.Provider>
 

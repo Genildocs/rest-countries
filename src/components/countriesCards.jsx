@@ -23,7 +23,7 @@ export default function CountriesCards() {
                     <Loader size="md" content="Loading..." />
                 ) : (
                     countries.map((countrie) => (
-                    <Link to={'/detail'}   style={{textDecoration:'none'}}  onClick={()=> handleLinkClick(countrie)} >  
+                    <Link to={`/detail/${countrie.name.common}`}   style={{textDecoration:'none'}}  onClick={()=> handleLinkClick(countrie)} >  
                       <Region  className={`${countrie.fifa} mb-6`}>
                             <Img
                                 src={countrie.flags.png}
