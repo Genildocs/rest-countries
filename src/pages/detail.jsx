@@ -26,12 +26,12 @@ const Detail = () => {
     return (
         <div>
             <ButtonBack />
-            <div>
+            <div >
                 {nations.length === 0 ? (
                     <Loader size="md" content="Loading..." />
                 ) : (
                     nations.map((nations) => (
-                    <Container>
+                    <Container className="lg:flex">
                         <Images>
                             <Img src={nations.flags.svg} alt={nations.flags.alt} />
                         </Images>

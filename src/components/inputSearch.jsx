@@ -1,24 +1,13 @@
 import { useState } from "react";
 import { styled } from "styled-components";
-import { RegionContext } from "../providers/countrys";
-import { useContext } from "react";
-const InputSearch = () => {
-  const { countries, setCoutries, searchCountry } = useContext(RegionContext);
-  
-  const [search, setSearch] = useState("");
-  const searchCountry = () => {
-    const country = [...countries];
+const InputSearch = ({onSearch}) => {
     
-    const filter = country.filter((item) => {
-      return item.name.common === search
-    });
-      console.log(filter)
-  };
-
+  const [search, setSearch] = useState("");
+  
   const handleClick = () => {
-    if (search === "") return;
+    if (search === "") return;   
+    onSearch(search)
     setSearch("");
-    searchCountry();
   };
 
   return (
@@ -57,6 +46,10 @@ export const Wrapper = styled.div`
   border-radius: 5px;
   padding: 1rem;
   box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.15);
+
+  @media(min-width: 1024px){
+    width: 30%;
+  }
 `;
 
 export const Input = styled.input`

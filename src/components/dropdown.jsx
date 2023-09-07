@@ -1,24 +1,11 @@
 import React from "react";
 import { styled } from "styled-components";
 import { useState, useContext } from "react";
-import { RegionContext } from "../providers/countrys";
 
-const Dropdown = () => {
+const Dropdown = ({ onSearch }) => {
   const [ismenu, setIsmenu] = useState(false);
-  const { countries, setCoutries } = useContext(RegionContext);
+
   
-
-  const filterRegion = (region) => {
-    const country = [...countries];
-    const filter = country.filter((item) => {
-      
-      return item.region === region
-        ? item.name.common
-        : '';
-    });
-
-    setCoutries(filter);
-  };
 
   return (
     <div className="drop relative">
@@ -59,19 +46,34 @@ const Dropdown = () => {
       </Menu>
 
       <Ul className={`${ismenu ? "block" : "hidden"} absolute`}>
-        <li onClick={()=>filterRegion("Africa")} className="mb-1.5 cursor-pointer hover:bg-Bluehover hover:text-white">
+        <li
+          onClick={() => onSearch("Africa")}
+          className="mb-1.5 cursor-pointer hover:bg-Bluehover hover:text-white"
+        >
           Africa
         </li>
-        <li onClick={()=>filterRegion("Americas")} className="mb-1.5 cursor-pointer hover:bg-Bluehover hover:text-white">
+        <li
+          onClick={() => onSearch("America")}
+          className="mb-1.5 cursor-pointer hover:bg-Bluehover hover:text-white"
+        >
           America
         </li>
-        <li className="mb-1.5 cursor-pointer hover:bg-Bluehover hover:text-white">
+        <li
+          onClick={() => onSearch("Asia")}
+          className="mb-1.5 cursor-pointer hover:bg-Bluehover hover:text-white"
+        >
           Asia
         </li>
-        <li className="mb-1.5 cursor-pointer hover:bg-Bluehover hover:text-white">
+        <li
+          onClick={() => onSearch("Europe")}
+          className="mb-1.5 cursor-pointer hover:bg-Bluehover hover:text-white"
+        >
           Europe
         </li>
-        <li className="mb-1.5 cursor-pointer hover:bg-Bluehover hover:text-white">
+        <li
+          onClick={() => onSearch("Oceania")}
+          className="mb-1.5 cursor-pointer hover:bg-Bluehover hover:text-white"
+        >
           Oceania
         </li>
       </Ul>
