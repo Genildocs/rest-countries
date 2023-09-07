@@ -87,7 +87,8 @@ export const Container = styled.div`
     gap: 2rem;
 
     @media(min-width: 768px){
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(0,320px));
+        gap: 6rem;
         margin: 3rem 1rem 0 1rem;
     }
   }

@@ -8,7 +8,7 @@ const Dropdown = ({ onSearch }) => {
   
 
   return (
-    <div className="drop relative">
+    <div className="drop relative sm:w-[25rem]">
       <Menu className="flex items-center" onClick={() => setIsmenu(!ismenu)}>
         <span>Filter by Region</span>
         <div className={ismenu ? "hidden" : "block"}>
