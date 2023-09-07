@@ -1,4 +1,4 @@
-import Drop from "../components/dropdown"
+import Dropdown from "../components/dropdown"
 import React, { useEffect, useState } from "react";
 import { Loader } from "rsuite";
 import 'rsuite/dist/rsuite.min.css';
@@ -8,22 +8,20 @@ import { RegionContext } from "../providers/countrys";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 export default function CountriesCards() {
-    const {countries, setNation} = useContext(RegionContext)
+    const {countries} = useContext(RegionContext)
     
-    const handleLinkClick = (countrie) =>{
-        setNation(countrie)
-    };
+ 
 
     return (
         <div>
             <InputSearch />
-            <Drop />
+            <Dropdown />
             <Container>
                 {countries.length === 0 ? (
                     <Loader size="md" content="Loading..." />
                 ) : (
                     countries.map((countrie) => (
-                    <Link to={`/detail/${countrie.name.common}`}   style={{textDecoration:'none'}}  onClick={()=> handleLinkClick(countrie)} >  
+                    <Link to={`/detail/${countrie.name.common}`}   style={{textDecoration:'none'}} >  
                       <Region  className={`${countrie.fifa} mb-6`}>
                             <Img
                                 src={countrie.flags.png}
@@ -59,10 +57,10 @@ export default function CountriesCards() {
 }
 
 export const Container = styled.div`
-  margin: 5rem 3rem 0 3rem;
+  margin: 3rem 3rem 0 3rem;
  @media(min-width: 640px){
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(4,1fr);   
     gap: 2rem;
  }
 `;
@@ -70,7 +68,7 @@ export const Container = styled.div`
 export const Img = styled.img`
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
-  width: 100%;
+
 `;
 
 export const Country = styled.div`

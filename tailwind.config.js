@@ -11,6 +11,7 @@ export default {
         DarkGray: "#858585",
         VeryLightGray: "#fafafa",
         whiteText: "#ffffff",
+        Bluehover: '#066bc0',
       },
     },
   },

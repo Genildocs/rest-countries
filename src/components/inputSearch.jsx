@@ -3,17 +3,16 @@ import { styled } from "styled-components";
 import { RegionContext } from "../providers/countrys";
 import { useContext } from "react";
 const InputSearch = () => {
-  const { countries, setCoutries } = useContext(RegionContext);
+  const { countries, setCoutries, searchCountry } = useContext(RegionContext);
+  
   const [search, setSearch] = useState("");
   const searchCountry = () => {
     const country = [...countries];
+    
     const filter = country.filter((item) => {
       return item.name.common === search
-        ? item.name.common
-        : console.log("Isfalse");
     });
-
-    setCoutries(filter);
+      console.log(filter)
   };
 
   const handleClick = () => {
