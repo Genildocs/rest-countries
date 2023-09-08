@@ -46,6 +46,9 @@ export const Wrapper = styled.div`
   border-radius: 5px;
   padding: 1rem;
   box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.15);
+  @media(min-width: 640px){
+    width: 40%;
+  }
 
   @media(min-width: 1024px){
     width: 30%;

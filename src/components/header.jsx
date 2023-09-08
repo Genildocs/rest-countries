@@ -8,7 +8,7 @@ const Header = () => {
     };
 
     return (
-        <Wrapper className="flex items-center justify-between bg-whiteText dark:bg-DarkBlue">
+        <Headerr className="HEADER flex items-center justify-between bg-whiteText dark:bg-DarkBlue">
             <div>
                 <h1 className="text-lg font-bold text-LightModeText dark:text-whiteText ">
                     Where in the world?
@@ -59,13 +59,13 @@ const Header = () => {
                     </p>
                 </div>
             </div>
-        </Wrapper>
+        </Headerr>
     );
 };
 
 export default Header;
 
-export const Wrapper = styled.div`
+export const Headerr = styled.div`
   height: 10vh;
   padding: 0 1.5rem;
   box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.15);

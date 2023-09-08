@@ -9,7 +9,7 @@ import { RegionProvider } from "./providers/countrys";
 function App() {
   return (
 
-    <Container className="bg-VeryLightGray  dark:bg-VeryDarkBlue">
+    <Container className="CONTAINER bg-VeryLightGray  dark:bg-VeryDarkBlue ">
       <RegionProvider>
         <Header />
         <Outlet />

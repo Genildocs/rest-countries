@@ -87,7 +87,7 @@ export const Container = styled.div`
     gap: 2rem;
 
     @media(min-width: 768px){
-        grid-template-columns: repeat(auto-fit, minmax(0,320px));
+        grid-template-columns: repeat(4, 1fr);
         gap: 6rem;
         margin: 3rem 1rem 0 1rem;
     }
@@ -102,9 +102,9 @@ export const Img = styled.img`
 export const Country = styled.div`
   padding: 2rem;
   border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.15); 
+  border-bottom-left-radius: 10px; 
   width: 100% ;
+  max-width: 20rem;
 `;
 
 export const Region = styled.div`

@@ -9,7 +9,7 @@ const Dropdown = ({ onSearch }) => {
 
   return (
     <div className="drop relative sm:w-[25rem]">
-      <Menu className="flex items-center" onClick={() => setIsmenu(!ismenu)}>
+      <Menu className="flex items-center dark:bg-DarkBlue dark:text-whiteText" onClick={() => setIsmenu(!ismenu)}>
         <span>Filter by Region</span>
         <div className={ismenu ? "hidden" : "block"}>
           <svg
@@ -45,7 +45,7 @@ const Dropdown = ({ onSearch }) => {
         </div>
       </Menu>
 
-      <Ul className={`${ismenu ? "block" : "hidden"} absolute`}>
+      <Ul className={`${ismenu ? "block" : "hidden"} absolute dark:bg-DarkBlue dark:text-whiteText`}>
         <li
           onClick={() => onSearch("Africa")}
           className="mb-1.5 cursor-pointer hover:bg-Bluehover hover:text-white"
