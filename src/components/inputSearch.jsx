@@ -12,7 +12,7 @@ const InputSearch = ({onSearch}) => {
 
   return (
     <Wrapper className="flex bg-whiteText dark:bg-DarkBlue">
-      <button onClick={handleClick}>
+      <button onClick={handleClick} >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -29,6 +29,7 @@ const InputSearch = ({onSearch}) => {
         </svg>
       </button>
       <Input
+        onKeyUp={()=>onSearch(search)}
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         className="dark:text-white"

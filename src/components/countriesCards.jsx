@@ -7,76 +7,84 @@ import InputSearch from "./inputSearch";
 import { RegionContext } from "../providers/countrys";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import BtnLearMore from "./btnlmore";
 export default function CountriesCards() {
-    const { countries } = useContext(RegionContext);
-    const [searchResults, setSearchResults] = useState([]);
+  const { countries } = useContext(RegionContext);
+  const [searchResults, setSearchResults] = useState([]);
+  const [visible, setVisible] = useState(8);
+   
+  const handleSearch = (searchQuery) => {
+    if (searchQuery === "") {
+      setSearchResults([]);
+    } else {
+      const filter = countries.filter(
+        (countrie) =>
+          countrie.name.common
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase()) ||
+          countrie.region.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setSearchResults(filter);
+    }
+  };
 
-    const handleSearch = (searchQuery) => {
-        if (searchQuery === "") {
-            setSearchResults([]);
-        } else {
-            const filter = countries.filter(
-                (countrie) =>
-                    countrie.name.common
-                        .toLowerCase()
-                        .includes(searchQuery.toLowerCase()) ||
-                    countrie.region.toLowerCase().includes(searchQuery.toLowerCase())
-            );
-            setSearchResults(filter);
-        }
-    };
+  useEffect(() => {
+    if (searchResults.length === 0) {
+      setSearchResults(countries);
+    }
+  }, [searchResults, countries]);
 
-    useEffect(() => {
-        if (searchResults.length === 0) {
-            setSearchResults(countries);
-        }
-    }, [searchResults, countries]);
+  const showMoreIten = () =>{
+    setVisible((prevValue)=> prevValue + 8)
+  }
 
-    return (
-        <div className="lg:mx-7">
-            <InputSearch onSearch={handleSearch} />
-            <Dropdown onSearch={handleSearch} />
-            <Container>
-                {searchResults.length === 0 ? (
-                    <Loader size="md" content="Loading..." />
-                ) : (
-                    searchResults.map((countrie) => (
-                        <Link
-                            to={`/detail/${countrie.name.common}`}
-                            style={{ textDecoration: "none" }}
-                        >
-                            <Region className={`${countrie.fifa} mb-6`}>
-                                <Img
-                                    src={countrie.flags.png}
-                                    alt={`flags ${countrie.name.common}`}
-                                />
-                                <Country className="bg-whiteText text-LightModeText dark:bg-DarkBlue dark:text-white">
-                                    <h1 className="font-bold text-2xl mb-3">
-                                        {countrie.name.common}
-                                    </h1>
-                                    <p className="mb-2.5">
-                                        <span className="font-semibold text-lg ">Population:</span>{" "}
-                                        {Number(countrie.population).toLocaleString("en", {
-                                            minimumFractionDigits: 2,
-                                            maximumFractionDigits: 2,
-                                        })}
-                                    </p>
-                                    <p className="mb-2.5">
-                                        <span className="font-semibold text-lg">Region:</span>{" "}
-                                        {countrie.region}
-                                    </p>
-                                    <p>
-                                        <span className="font-semibold text-lg">Capital:</span>{" "}
-                                        {countrie.capital}
-                                    </p>
-                                </Country>
-                            </Region>
-                        </Link>
-                    ))
-                )}
-            </Container>
-        </div>
-    );
+
+  return (
+    <div className="lg:mx-7">
+      <InputSearch onSearch={handleSearch} />
+      <Dropdown onSearch={handleSearch} />
+      <Container>
+        {searchResults.length === 0 ? (
+          <Loader size="md" content="Loading..." />
+        ) : (
+          searchResults.slice(0, visible).map((countrie) => (
+            <Link
+              to={`/detail/${countrie.name.common}`}
+              style={{ textDecoration: "none" }}
+            >
+              <Region className={`${countrie.fifa} mb-6`}>
+                <Img
+                  src={countrie.flags.png}
+                  alt={`flags ${countrie.name.common}`}
+                />
+                <Country className="bg-whiteText text-LightModeText dark:bg-DarkBlue dark:text-white">
+                  <h1 className="font-bold text-2xl mb-3">
+                    {countrie.name.common}
+                  </h1>
+                  <p className="mb-2.5">
+                    <span className="font-semibold text-lg ">Population:</span>{" "}
+                    {Number(countrie.population).toLocaleString("en", {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}
+                  </p>
+                  <p className="mb-2.5">
+                    <span className="font-semibold text-lg">Region:</span>{" "}
+                    {countrie.region}
+                  </p>
+                  <p>
+                    <span className="font-semibold text-lg">Capital:</span>{" "}
+                    {countrie.capital}
+                  </p>
+                </Country>
+              </Region>
+            </Link>
+          ))
+        )}
+        <BtnLearMore showMoreIten={showMoreIten} />
+      </Container>
+    </div>
+  );
 }
 
 export const Container = styled.div`
@@ -86,10 +94,10 @@ export const Container = styled.div`
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
 
-    @media(min-width: 768px){
-        grid-template-columns: repeat(4, 1fr);
-        gap: 6rem;
-        margin: 3rem 1rem 0 1rem;
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4rem;
+      margin: 3rem 1rem 0 1rem;
     }
   }
 `;
@@ -102,13 +110,15 @@ export const Img = styled.img`
 export const Country = styled.div`
   padding: 2rem;
   border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px; 
-  width: 100% ;
+  border-bottom-left-radius: 10px;
+  width: 100%;
   max-width: 20rem;
 `;
 
 export const Region = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
+
+
