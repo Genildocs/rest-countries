@@ -5,12 +5,14 @@ import { useState, useContext } from "react";
 const Dropdown = ({ onSearch }) => {
   const [ismenu, setIsmenu] = useState(false);
 
-  
+  const handleMenu = () => {
+    setIsmenu(!ismenu);
+  };
 
   return (
-    <div className="drop relative sm:w-[25rem]">
-      <Menu className="flex items-center dark:bg-DarkBlue dark:text-whiteText" onClick={() => setIsmenu(!ismenu)}>
-        <span>Filter by Region</span>
+    <div className="drop relative sm:w-[25rem] lg:ml-9">
+      <Menu className="flex items-center p-4 cursor-pointer dark:bg-DarkBlue bg-whiteText dark:text-whiteText w-[50%] rounded-md text-base">
+        <span onClick={handleMenu}>Filter by Region</span>
         <div className={ismenu ? "hidden" : "block"}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -45,38 +47,40 @@ const Dropdown = ({ onSearch }) => {
         </div>
       </Menu>
 
-      <Ul className={`${ismenu ? "block" : "hidden"} absolute dark:bg-DarkBlue dark:text-whiteText`}>
-        <li
-          onClick={() => onSearch("Africa")}
-          className="mb-1.5 cursor-pointer hover:bg-Bluehover hover:text-white"
-        >
-          Africa
-        </li>
-        <li
-          onClick={() => onSearch("America")}
-          className="mb-1.5 cursor-pointer hover:bg-Bluehover hover:text-white"
-        >
-          America
-        </li>
-        <li
-          onClick={() => onSearch("Asia")}
-          className="mb-1.5 cursor-pointer hover:bg-Bluehover hover:text-white"
-        >
-          Asia
-        </li>
-        <li
-          onClick={() => onSearch("Europe")}
-          className="mb-1.5 cursor-pointer hover:bg-Bluehover hover:text-white"
-        >
-          Europe
-        </li>
-        <li
-          onClick={() => onSearch("Oceania")}
-          className="mb-1.5 cursor-pointer hover:bg-Bluehover hover:text-white"
-        >
-          Oceania
-        </li>
-      </Ul>
+      {ismenu && (
+        <Ul  className={` absolute dark:bg-DarkBlue dark:text-whiteText bg-whiteText w-[50%] p-4 rounded-md`}>
+          <li
+            onClick={() => onSearch("Africa")}
+            className="mb-1.5 cursor-pointer hover:bg-Bluehover hover:text-white"
+          >
+            Africa
+          </li>
+          <li
+            onClick={() => onSearch("America")}
+            className="mb-1.5 cursor-pointer hover:bg-Bluehover hover:text-white"
+          >
+            America
+          </li>
+          <li
+            onClick={() => onSearch("Asia")}
+            className="mb-1.5 cursor-pointer hover:bg-Bluehover hover:text-white"
+          >
+            Asia
+          </li>
+          <li
+            onClick={() => onSearch("Europe")}
+            className="mb-1.5 cursor-pointer hover:bg-Bluehover hover:text-white"
+          >
+            Europe
+          </li>
+          <li
+            onClick={() => onSearch("Oceania")}
+            className="mb-1.5 cursor-pointer hover:bg-Bluehover hover:text-white"
+          >
+            Oceania
+          </li>
+        </Ul>
+      )}
     </div>
   );
 };
@@ -84,24 +88,19 @@ const Dropdown = ({ onSearch }) => {
 export default Dropdown;
 
 export const Menu = styled.div`
-  background: #ffffff;
-  margin-top: 2rem;
-  margin-left: 1.5rem;
-  padding: 1rem;
-  border-radius: 5px;
+  margin: 2rem 0 0 1.5rem;
   box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.15);
-  width: 50%;
-  font-size: 1rem;
-  gap: 0.5rem;
-  cursor: pointer;
+  gap: 0.5rem; 
+
+  @media(min-width: 1240px){
+    margin-left: 11rem;
+  }
 `;
 
-export const Ul = styled.ul`
-  background: #ffffff;
+export const Ul = styled.ul`  
   box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.15);
-  margin-top: 0.5rem;
-  margin-left: 1.5rem;
-  width: 50%;
-  border-radius: 5px;
-  padding: 1rem;
+  margin: 0.5rem 0 0 1.5rem;
+  @media(min-width: 1240px){
+    margin-left: 11rem;
+  }
 `;

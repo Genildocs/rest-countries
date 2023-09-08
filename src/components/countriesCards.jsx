@@ -41,8 +41,11 @@ export default function CountriesCards() {
 
   return (
     <div className="lg:mx-7">
-      <InputSearch onSearch={handleSearch} />
-      <Dropdown onSearch={handleSearch} />
+       <div className="lg:flex lg:justify-between lg:items-center ">
+        <InputSearch onSearch={handleSearch} />
+        <Dropdown onSearch={handleSearch}  />
+        </div> 
+      
       <Container>
         {searchResults.length === 0 ? (
           <Loader size="md" content="Loading..." />
