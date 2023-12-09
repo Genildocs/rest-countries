@@ -85,7 +85,7 @@ const Detail = () => {
                   <p className="mb-12">
                     <span className="font-semibold text-lg">Languages:</span>{" "}
                     {Object.values(nations.languages).map(
-                      (item, index, nations) => `(${nations[index]}) `
+                      (item, index, nations) => `${nations[index]} `
                     )}
                   </p>
                 </div>

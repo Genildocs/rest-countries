@@ -1,20 +1,20 @@
-import Dropdown from '../components/dropdown';
-import React, { useEffect, useState } from 'react';
-import { Loader } from 'rsuite';
-import 'rsuite/dist/rsuite.min.css';
-import { styled } from 'styled-components';
-import InputSearch from './inputSearch';
-import { RegionContext } from '../providers/countrys';
-import { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import BtnLearMore from './btnlmore';
+import Dropdown from "../components/dropdown";
+import React, { useEffect, useState } from "react";
+import { Loader } from "rsuite";
+import "rsuite/dist/rsuite.min.css";
+import { styled } from "styled-components";
+import InputSearch from "./inputSearch";
+import { RegionContext } from "../providers/countrys";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import BtnLearMore from "./btnlmore";
 export default function CountriesCards() {
   const { countries } = useContext(RegionContext);
   const [searchResults, setSearchResults] = useState([]);
   const [visible, setVisible] = useState(8);
 
   const handleSearch = (searchQuery) => {
-    if (searchQuery === '') {
+    if (searchQuery === "") {
       setSearchResults([]);
     } else {
       const filter = countries.filter(
@@ -45,7 +45,7 @@ export default function CountriesCards() {
         <Dropdown onSearch={handleSearch} />
       </div>
 
-      <Container>
+      <div className=" mt-5 grid grid-cols-auto-fit gap-y-12 justify-center min-h-screen sm:gap-x-12">
         {searchResults.length === 0 ? (
           <div className=" absolute bottom-1/2 right-1/2 translate-x-[50%] translate-y-[50%]">
             <Loader size="md" content="Loading..." />
@@ -54,64 +54,48 @@ export default function CountriesCards() {
           searchResults.slice(0, visible).map((countrie) => (
             <Link
               to={`/detail/${countrie.name.common.toLowerCase()}`}
-              style={{ textDecoration: 'none' }}
+              style={{ textDecoration: "none" }}
+              key={countrie.name.common}
             >
-              <Region className={`${countrie.fifa} mb-6`}>
-                <Img
-                  src={countrie.flags.png}
-                  alt={`flags ${countrie.name.common}`}
-                />
-                <Country className="bg-whiteText text-LightModeText dark:bg-DarkBlue dark:text-white">
-                  <h1 className="font-bold text-2xl mb-3">
+              <div className=" h-[21rem] shadow-concreto rounded-md overflow-hidden">
+                <div className="h-[10rem]">
+                  <img
+                    src={countrie.flags.png}
+                    alt={`flags ${countrie.name.common}`}
+                    className=" object-cover h-full w-full shadow-concreto"
+                  />
+                </div>
+                <div className="pl-6 pt-3 pb-5 bg-whiteText text-LightModeText dark:bg-DarkBlue dark:text-white">
+                  <h1 className="font-bold mb-4 text-lg">
                     {countrie.name.common}
                   </h1>
                   <p className="mb-2.5">
-                    <span className="font-semibold text-lg ">Population:</span>{' '}
-                    {Number(countrie.population).toLocaleString('en', {
+                    <span className=" font-bold ">Population:</span>{" "}
+                    {Number(countrie.population).toLocaleString("en", {
                       minimumFractionDigits: 2,
                       maximumFractionDigits: 2,
                     })}
                   </p>
                   <p className="mb-2.5">
-                    <span className="font-semibold text-lg">Region:</span>{' '}
+                    <span className=" font-bold">Region:</span>{" "}
                     {countrie.region}
                   </p>
                   <p>
-                    <span className="font-semibold text-lg">Capital:</span>{' '}
+                    <span className=" font-bold">Capital:</span>{" "}
                     {countrie.capital}
                   </p>
-                </Country>
-              </Region>
+                </div>
+              </div>
             </Link>
           ))
         )}
-        {searchResults.length !== 0 && (
-          <BtnLearMore showMoreIten={showMoreIten} />
-        )}
-      </Container>
+      </div>
+      {searchResults.length !== 0 && (
+        <BtnLearMore showMoreIten={showMoreIten} />
+      )}
     </div>
   );
 }
-
-export const Container = styled.div`
-  margin: 3rem 3rem 0 3rem;
-  @media (min-width: 640px) {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-
-    @media (min-width: 768px) {
-      grid-template-columns: repeat(4, 1fr);
-      gap: 4rem;
-      margin: 3rem 1rem 0 1rem;
-    }
-  }
-`;
-
-export const Img = styled.img`
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-`;
 
 export const Country = styled.div`
   padding: 2rem;
@@ -119,10 +103,4 @@ export const Country = styled.div`
   border-bottom-left-radius: 10px;
   width: 100%;
   max-width: 20rem;
-`;
-
-export const Region = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
