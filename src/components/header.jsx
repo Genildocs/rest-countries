@@ -5,11 +5,9 @@ const Header = () => {
   const { theme, toggleTheme } = useContext(ThemeContext) || {};
 
   return (
-    <div className=" flex items-center justify-around gap-12 shadow-concreto h-[5rem] bg-whiteText dark:bg-DarkBlue">
+    <div className=" flex items-center justify-around gap-12 shadow-concreto h-[5rem] ">
       <div>
-        <h1 className="text-sm font-extrabold text-LightModeText dark:text-whiteText ">
-          Where in the world?
-        </h1>
+        <h1 className="text-sm font-extrabold  ">Where in the world?</h1>
       </div>
       <div className="flex items-center gap-1">
         {theme === "light" ? (

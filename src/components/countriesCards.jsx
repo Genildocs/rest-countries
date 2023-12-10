@@ -54,7 +54,7 @@ export default function CountriesCards() {
           searchResults.slice(0, visible).map((countrie) => (
             <Link
               to={`/detail/${countrie.name.common.toLowerCase()}`}
-              style={{ textDecoration: "none" }}
+              style={{ textDecoration: "none", color: "inherit" }}
               key={countrie.name.common}
             >
               <div className=" h-[21rem] shadow-concreto rounded-md overflow-hidden">
@@ -65,7 +65,7 @@ export default function CountriesCards() {
                     className=" object-cover h-full w-full shadow-concreto"
                   />
                 </div>
-                <div className="pl-6 pt-3 pb-5 bg-whiteText text-LightModeText dark:bg-DarkBlue dark:text-white">
+                <div className="pl-6 pt-3 pb-5 ">
                   <h1 className="font-bold mb-4 text-lg">
                     {countrie.name.common}
                   </h1>
